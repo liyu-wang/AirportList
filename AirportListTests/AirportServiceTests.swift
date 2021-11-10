@@ -39,7 +39,7 @@ class AirportServiceTests: XCTestCase {
                     expectation.fulfill()
                 }
             } receiveValue: { airports in
-                XCTAssertTrue(airports.count > 0)
+                XCTAssertTrue(airports.count > 0, "Airports number is not greater than 0.")
             }
 
         wait(for: [expectation], timeout: 3)
