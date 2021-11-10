@@ -24,10 +24,8 @@ protocol AirportServiceType {
     func fetchAirportList() -> AnyPublisher<[Airport], WebServiceError>
 }
 
-struct AirportService: AirportServiceType {
+class AirportService: WebService, AirportServiceType {
     func fetchAirportList() -> AnyPublisher<[Airport], WebServiceError> {
         return makeAPICall(with: AirportAPIDefinition.fetchAirportList, for: [Airport].self)
     }
 }
-
-extension AirportService: WebService {}

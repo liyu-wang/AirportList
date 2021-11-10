@@ -8,11 +8,23 @@
 import Foundation
 import Combine
 
-protocol WebService {
+protocol WebServiceType {
+    var session: URLSession { get }
+
     func makeAPICall<T: Decodable>(with requestConvertible: RequestConvertible, for model: T.Type) -> AnyPublisher<T, WebServiceError>
 }
 
-extension WebService {
+class WebService: WebServiceType {
+    let session: URLSession
+
+    init() {
+        let config = URLSessionConfiguration.default
+        config.waitsForConnectivity = true
+        session = URLSession(configuration: config)
+    }
+}
+
+extension WebServiceType {
     func makeAPICall<T: Decodable>(with requestConvertible: RequestConvertible, for model: T.Type) -> AnyPublisher<T, WebServiceError> {
         let request: URLRequest
         do {
@@ -22,7 +34,7 @@ extension WebService {
                 .eraseToAnyPublisher()
         }
 
-        return URLSession.shared.dataTaskPublisher(for: request)
+        return session.dataTaskPublisher(for: request)
             .tryMap { data, response in
                 guard
                     let httpResponse = response as? HTTPURLResponse,
