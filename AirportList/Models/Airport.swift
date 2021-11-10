@@ -46,38 +46,8 @@ struct Region: Codable {
     var regionName: String
 }
 
-extension Airport {
-    static let mock = Airport(
-        airportCode: "abc",
-        airportName: "abc",
-        domesticAirport: true,
-        regionalAirport: true,
-        onlineIndicator: true,
-        eticketableAirport: true,
-        location: Location.mock,
-        city: City.mock,
-        country: Country.mock,
-        region: Region.mock)
-}
-
-extension Location {
-    static let mock = Location(aboveSeaLevel: 444,
-                               latitude: 333,
-                               latitudeRadius: 444,
-                               longitude: 444,
-                               longitudeRadius: 444,
-                               latitudeDirection: "dd",
-                               longitudeDirection: "dd")
-}
-
-extension City {
-    static let mock = City(cityCode: "ddd", cityName: "ddd", timeZoneName: "ddd")
-}
-
-extension Country {
-    static let mock = Country(countryCode: "ddd", countryName: "ddd")
-}
-
-extension Region {
-    static let mock = Region(regionCode: "ddd", regionName: "ddd")
+extension Airport: Equatable {
+    static func == (lhs: Airport, rhs: Airport) -> Bool {
+        lhs.airportCode == rhs.airportCode
+    }
 }

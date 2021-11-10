@@ -46,3 +46,40 @@ class MockUtils {
         }
     }
 }
+
+
+extension Airport {
+    static let mock = Airport(
+        airportCode: "AAA",
+        airportName: "Anaa",
+        domesticAirport: false,
+        regionalAirport: false,
+        onlineIndicator: false,
+        eticketableAirport: false,
+        location: Location.mock,
+        city: City.mock,
+        country: Country.mock,
+        region: Region.mock)
+}
+
+extension Location {
+    static let mock = Location(aboveSeaLevel: -99999,
+                               latitude: 17.25,
+                               latitudeRadius: -0.304,
+                               longitude: 145.3,
+                               longitudeRadius: -2.5395,
+                               latitudeDirection: "S",
+                               longitudeDirection: "W")
+}
+
+extension City {
+    static let mock = City(cityCode: "AAA", cityName: "Anaa", timeZoneName: "Pacific/Tahiti")
+}
+
+extension Country {
+    static let mock = Country(countryCode: "PF", countryName: "French Polynesia")
+}
+
+extension Region {
+    static let mock = Region(regionCode: "SP", regionName: "South Pacific")
+}

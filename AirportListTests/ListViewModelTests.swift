@@ -55,6 +55,7 @@ class ListViewModelTests: XCTestCase {
                 XCTFail("infinite publisher shouldn't complete")
             } receiveValue: { _ in
                 XCTAssertEqual(self.viewModel.numberOfRows, 21)
+                XCTAssertEqual(self.viewModel.item(at: IndexPath(row: 0, section: 0)), Airport.mock)
                 expectation.fulfill()
             }
 
