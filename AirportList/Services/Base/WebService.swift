@@ -18,7 +18,7 @@ extension WebService {
         do {
             try request = requestConvertible.toURLRequest()
         } catch {
-            return Fail(error: .init(kind: .invalidURL, request: requestConvertible))
+            return Fail(error: .init(kind: .invalidRequest, request: requestConvertible))
                 .eraseToAnyPublisher()
         }
 
@@ -44,7 +44,7 @@ extension WebService {
                 case is DecodingError:
                     return WebServiceError(kind: .decodingError, request: requestConvertible, underlyingError: error)
                 default:
-                    return WebServiceError(kind: .other, request: requestConvertible, underlyingError: error)
+                    return WebServiceError(kind: .unknown, request: requestConvertible, underlyingError: error)
                 }
             }
             .eraseToAnyPublisher()

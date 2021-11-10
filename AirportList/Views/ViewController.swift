@@ -119,10 +119,10 @@ extension ViewController: UITableViewDelegate {
 }
 
 extension ViewController {
-    func displayAlert(for error: Error) {
+    func displayAlert(for error: WebServiceError) {
         let alert = UIAlertController(
-            title: "error",
-            message: error.localizedDescription,
+            title: error.errorTitle,
+            message: error.errorDescription,
             preferredStyle: .alert
         )
         let okAction = UIAlertAction(title: "ok", style: .default, handler: nil)

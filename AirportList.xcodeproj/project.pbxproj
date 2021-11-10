@@ -22,6 +22,7 @@
 		7258BACA273AA1C1005E9CAC /* ListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7258BAC9273AA1C1005E9CAC /* ListViewModelTests.swift */; };
 		7258BACD273AA1F1005E9CAC /* AirportsData.json in Resources */ = {isa = PBXBuildFile; fileRef = 7258BACC273AA1F1005E9CAC /* AirportsData.json */; };
 		7258BACF273AA361005E9CAC /* Mocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7258BACE273AA361005E9CAC /* Mocks.swift */; };
+		7258BAD6273C774E005E9CAC /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7258BAD5273C774E005E9CAC /* Strings.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		7258BAC9273AA1C1005E9CAC /* ListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModelTests.swift; sourceTree = "<group>"; };
 		7258BACC273AA1F1005E9CAC /* AirportsData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = AirportsData.json; sourceTree = "<group>"; };
 		7258BACE273AA361005E9CAC /* Mocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mocks.swift; sourceTree = "<group>"; };
+		7258BAD5273C774E005E9CAC /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +102,7 @@
 				7258BAC6273A9CF2005E9CAC /* ViewModels */,
 				7258BAB7273A68B5005E9CAC /* Services */,
 				7258BABA273A6A18005E9CAC /* Models */,
+				7258BAD4273C773D005E9CAC /* Resources */,
 				7201E919273A3F0A0041B39B /* Assets.xcassets */,
 				7201E91B273A3F0A0041B39B /* LaunchScreen.storyboard */,
 				7201E91E273A3F0A0041B39B /* Info.plist */,
@@ -167,6 +170,14 @@
 				7258BACE273AA361005E9CAC /* Mocks.swift */,
 			);
 			path = Mocks;
+			sourceTree = "<group>";
+		};
+		7258BAD4273C773D005E9CAC /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				7258BAD5273C774E005E9CAC /* Strings.swift */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -272,6 +283,7 @@
 			files = (
 				7258BABC273A6A31005E9CAC /* Airport.swift in Sources */,
 				7258BAC2273A7D59005E9CAC /* RequestConvertible.swift in Sources */,
+				7258BAD6273C774E005E9CAC /* Strings.swift in Sources */,
 				7258BABE273A6B02005E9CAC /* WebServiceError.swift in Sources */,
 				7258BAC0273A6B30005E9CAC /* WebService.swift in Sources */,
 				7201E915273A3F080041B39B /* ViewController.swift in Sources */,

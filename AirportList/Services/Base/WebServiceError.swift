@@ -7,13 +7,18 @@
 
 import Foundation
 
-struct WebServiceError: LocalizedError {
+protocol WebServiceErrorType: LocalizedError {
+    var errorTitle: String { get }
+    var errorMessage: String { get }
+}
+
+struct WebServiceError: WebServiceErrorType {
     enum ErrorKind {
-        case invalidURL
+        case invalidRequest
         case badServerResponse
         case networkingError
         case decodingError
-        case other
+        case unknown
     }
 
     let kind: ErrorKind
@@ -31,5 +36,32 @@ struct WebServiceError: LocalizedError {
         self.request = request
         self.response = response
         self.underlyingError = underlyingError
+    }
+
+    var errorDescription: String? {
+        switch kind {
+        case .invalidRequest:
+            return "Invalid request: \(request)"
+        case .badServerResponse:
+            return "Bad response: \(request)"
+        case .networkingError, .decodingError:
+            return underlyingError?.localizedDescription
+        case .unknown:
+            return "Unkown error: \(request)"
+        }
+    }
+}
+
+extension WebServiceErrorType {
+    var errorTitle: String {
+        Strings.Errors.generalTitle
+    }
+
+    var errorMessage: String {
+#if DEBUG
+        localizedDescription
+#else
+        Strings.Errors.generalMessage
+#endif
     }
 }
