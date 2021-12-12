@@ -35,7 +35,8 @@ extension RequestConvertible {
             throw WebServiceError(kind: .invalidRequest, request: self)
         }
 
-        let request = URLRequest(url: url)
+        var request = URLRequest(url: url)
+        request.httpMethod = method.rawValue
         return request
     }
 }
