@@ -32,7 +32,7 @@ extension RequestConvertible {
 
     func toURLRequest() throws -> URLRequest {
         guard let url = URL(string: Constants.baseURL)?.appendingPathComponent(path) else {
-            throw WebServiceError(kind: .invalidRequest, request: self)
+            throw WebServiceError(errorKind: .invalidRequest, request: self)
         }
 
         var request = URLRequest(url: url)

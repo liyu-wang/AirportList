@@ -73,7 +73,7 @@ class ListViewModelTests: XCTestCase {
             .sink(receiveCompletion: { completion in
                 XCTFail("infinite publisher shouldn't complete")
             }, receiveValue: { errorSequence in
-                let errorKindSequence = errorSequence.map { $0.kind }
+                let errorKindSequence = errorSequence.map { $0.errorKind }
                 XCTAssertEqual(errorKindSequence, [WebServiceError.ErrorKind.badServerResponse])
                 expectation.fulfill()
             })

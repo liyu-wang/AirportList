@@ -21,25 +21,25 @@ struct WebServiceError: WebServiceErrorType {
         case unknown
     }
 
-    let kind: ErrorKind
+    let errorKind: ErrorKind
     let request: RequestConvertible
     let response: HTTPURLResponse?
     let underlyingError: Error?
 
     init(
-        kind: ErrorKind,
+        errorKind: ErrorKind,
         request: RequestConvertible,
         response: HTTPURLResponse? = nil,
         underlyingError: Error? = nil
     ) {
-        self.kind = kind
+        self.errorKind = errorKind
         self.request = request
         self.response = response
         self.underlyingError = underlyingError
     }
 
     var errorDescription: String? {
-        switch kind {
+        switch errorKind {
         case .invalidRequest:
             return "Invalid request: \(request)"
         case .badServerResponse:

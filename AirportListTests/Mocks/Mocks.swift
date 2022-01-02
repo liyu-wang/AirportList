@@ -20,7 +20,7 @@ struct MockAirportService: AirportServiceType {
 
 struct MockAirportServiceWithError: AirportServiceType {
     func fetchAirportList() -> AnyPublisher<[Airport], WebServiceError> {
-        let error: WebServiceError = .init(kind:.badServerResponse,
+        let error: WebServiceError = .init(errorKind:.badServerResponse,
                                            request: AirportAPIDefinition.fetchAirportList)
         return Fail(error: error)
             .eraseToAnyPublisher()

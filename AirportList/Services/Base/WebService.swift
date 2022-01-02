@@ -27,7 +27,7 @@ extension WebServiceType {
         do {
             try request = requestConvertible.toURLRequest()
         } catch {
-            return Fail(error: .init(kind: .invalidRequest, request: requestConvertible))
+            return Fail(error: .init(errorKind: .invalidRequest, request: requestConvertible))
                 .eraseToAnyPublisher()
         }
 
@@ -37,7 +37,7 @@ extension WebServiceType {
                     let httpResponse = response as? HTTPURLResponse,
                     (200...299).contains(httpResponse.statusCode)
                 else {
-                    throw WebServiceError(kind: .badServerResponse,
+                    throw WebServiceError(errorKind: .badServerResponse,
                                           request: requestConvertible,
                                           response: response as? HTTPURLResponse)
                 }
@@ -49,11 +49,11 @@ extension WebServiceType {
                 case let webServiceError as WebServiceError:
                     return webServiceError
                 case is URLError:
-                    return WebServiceError(kind: .networkingError, request: requestConvertible, underlyingError: error)
+                    return WebServiceError(errorKind: .networkingError, request: requestConvertible, underlyingError: error)
                 case is DecodingError:
-                    return WebServiceError(kind: .decodingError, request: requestConvertible, underlyingError: error)
+                    return WebServiceError(errorKind: .decodingError, request: requestConvertible, underlyingError: error)
                 default:
-                    return WebServiceError(kind: .unknown, request: requestConvertible, underlyingError: error)
+                    return WebServiceError(errorKind: .unknown, request: requestConvertible, underlyingError: error)
                 }
             }
             .eraseToAnyPublisher()
