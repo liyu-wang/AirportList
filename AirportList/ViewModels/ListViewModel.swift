@@ -14,7 +14,7 @@ protocol ListViewModelType {
     var reloadTablePublisher: AnyPublisher<Void, Never> { get }
 
     var numberOfRows: Int { get }
-    func item(at indexPath: IndexPath) -> Airport
+    func cellModel(at indexPath: IndexPath) -> AirportCellModel
     func fetchAirports()
 }
 
@@ -36,7 +36,7 @@ class ListViewModel: ListViewModelType {
     private let errorSubject = PassthroughSubject<WebServiceError, Never>()
     private let reloadTableSubject = PassthroughSubject<Void, Never>()
     private let service: AirportServiceType
-    private var airports: [Airport] = []
+    private var airportCellModels: [AirportCellModel] = []
 
     private var cancellables = Set<AnyCancellable>()
 
@@ -45,11 +45,11 @@ class ListViewModel: ListViewModelType {
     }
 
     var numberOfRows: Int {
-        airports.count
+        airportCellModels.count
     }
 
-    func item(at indexPath: IndexPath) -> Airport {
-        airports[indexPath.row]
+    func cellModel(at indexPath: IndexPath) -> AirportCellModel {
+        airportCellModels[indexPath.row]
     }
 
     func fetchAirports() {
@@ -66,7 +66,7 @@ class ListViewModel: ListViewModelType {
                 }
                 self.isLoadingSubject.send(false)
             } receiveValue: { [weak self] airports in
-                self?.airports = airports
+                self?.airportCellModels = airports.map { AirportCellModel(airport: $0) }
             }
             .store(in: &cancellables)
     }

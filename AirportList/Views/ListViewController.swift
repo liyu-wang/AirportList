@@ -8,11 +8,11 @@
 import UIKit
 import Combine
 
-class ViewController: UIViewController {
+class ListViewController: UIViewController {
 
     private enum Constants {
-        static let estimatedRowHeight: CGFloat = 50
-        static let cellIdentifier = "cellIdentifier"
+        static let estimatedRowHeight: CGFloat = 60
+        static let cellReuseIdentifier = String(describing: AirportsTableViewCell.self)
     }
 
     private lazy var tableView: UITableView = {
@@ -21,7 +21,10 @@ class ViewController: UIViewController {
         tableView.estimatedRowHeight = Constants.estimatedRowHeight
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: Constants.cellIdentifier)
+        tableView.register(
+            AirportsTableViewCell.self,
+            forCellReuseIdentifier: Constants.cellReuseIdentifier
+        )
         return tableView
     }()
 
@@ -97,36 +100,25 @@ class ViewController: UIViewController {
     }
 }
 
-extension ViewController: UITableViewDataSource {
+extension ListViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         viewModel.numberOfRows
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let airport = viewModel.item(at: indexPath)
-        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.cellIdentifier, for: indexPath)
-        cell.textLabel?.text = airport.airportName
+        let airportCellModel = viewModel.cellModel(at: indexPath)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.cellReuseIdentifier, for: indexPath) as? AirportsTableViewCell else {
+            return UITableViewCell()
+        }
+        cell.configure(airportCellModel)
         return cell
     }
 
 }
 
-extension ViewController: UITableViewDelegate {
+extension ListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-    }
-}
-
-extension ViewController {
-    func displayAlert(for error: WebServiceError) {
-        let alert = UIAlertController(
-            title: error.errorTitle,
-            message: error.errorDescription,
-            preferredStyle: .alert
-        )
-        let okAction = UIAlertAction(title: "ok", style: .default, handler: nil)
-        alert.addAction(okAction)
-        present(alert, animated: true, completion: nil)
     }
 }

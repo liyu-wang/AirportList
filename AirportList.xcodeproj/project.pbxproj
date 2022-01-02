@@ -9,9 +9,13 @@
 /* Begin PBXBuildFile section */
 		7201E911273A3F080041B39B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7201E910273A3F080041B39B /* AppDelegate.swift */; };
 		7201E913273A3F080041B39B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7201E912273A3F080041B39B /* SceneDelegate.swift */; };
-		7201E915273A3F080041B39B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7201E914273A3F080041B39B /* ViewController.swift */; };
+		7201E915273A3F080041B39B /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7201E914273A3F080041B39B /* ListViewController.swift */; };
 		7201E91A273A3F0A0041B39B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7201E919273A3F0A0041B39B /* Assets.xcassets */; };
 		7201E91D273A3F0A0041B39B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7201E91B273A3F0A0041B39B /* LaunchScreen.storyboard */; };
+		72466BE92777DD5400FEB20A /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72466BE82777DD5400FEB20A /* UIViewController+Extensions.swift */; };
+		72466BEB2778121C00FEB20A /* CGFloat+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72466BEA2778121C00FEB20A /* CGFloat+Extensions.swift */; };
+		72466BED2778123300FEB20A /* AirportsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72466BEC2778123300FEB20A /* AirportsTableViewCell.swift */; };
+		72466BEF2778125900FEB20A /* AirportCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72466BEE2778125900FEB20A /* AirportCellModel.swift */; };
 		7258BAB9273A699F005E9CAC /* AirportService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7258BAB8273A699F005E9CAC /* AirportService.swift */; };
 		7258BABC273A6A31005E9CAC /* Airport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7258BABB273A6A31005E9CAC /* Airport.swift */; };
 		7258BABE273A6B02005E9CAC /* WebServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7258BABD273A6B02005E9CAC /* WebServiceError.swift */; };
@@ -39,11 +43,15 @@
 		7201E90D273A3F080041B39B /* AirportList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AirportList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7201E910273A3F080041B39B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7201E912273A3F080041B39B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		7201E914273A3F080041B39B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		7201E914273A3F080041B39B /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		7201E919273A3F0A0041B39B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7201E91C273A3F0A0041B39B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7201E91E273A3F0A0041B39B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7201E928273A3F540041B39B /* AirportListTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AirportListTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		72466BE82777DD5400FEB20A /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
+		72466BEA2778121C00FEB20A /* CGFloat+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGFloat+Extensions.swift"; sourceTree = "<group>"; };
+		72466BEC2778123300FEB20A /* AirportsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AirportsTableViewCell.swift; sourceTree = "<group>"; };
+		72466BEE2778125900FEB20A /* AirportCellModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AirportCellModel.swift; sourceTree = "<group>"; };
 		7258BAB8273A699F005E9CAC /* AirportService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirportService.swift; sourceTree = "<group>"; };
 		7258BABB273A6A31005E9CAC /* Airport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Airport.swift; sourceTree = "<group>"; };
 		7258BABD273A6B02005E9CAC /* WebServiceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebServiceError.swift; sourceTree = "<group>"; };
@@ -98,6 +106,7 @@
 			children = (
 				7201E910273A3F080041B39B /* AppDelegate.swift */,
 				7201E912273A3F080041B39B /* SceneDelegate.swift */,
+				72466BE72777DD2B00FEB20A /* Extensions */,
 				7258BAB6273A6886005E9CAC /* Views */,
 				7258BAC6273A9CF2005E9CAC /* ViewModels */,
 				7258BAB7273A68B5005E9CAC /* Services */,
@@ -120,10 +129,20 @@
 			path = AirportListTests;
 			sourceTree = "<group>";
 		};
+		72466BE72777DD2B00FEB20A /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				72466BE82777DD5400FEB20A /* UIViewController+Extensions.swift */,
+				72466BEA2778121C00FEB20A /* CGFloat+Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		7258BAB6273A6886005E9CAC /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				7201E914273A3F080041B39B /* ViewController.swift */,
+				7201E914273A3F080041B39B /* ListViewController.swift */,
+				72466BEC2778123300FEB20A /* AirportsTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -159,6 +178,7 @@
 			isa = PBXGroup;
 			children = (
 				7258BAC7273A9D15005E9CAC /* ListViewModel.swift */,
+				72466BEE2778125900FEB20A /* AirportCellModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -282,14 +302,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				7258BABC273A6A31005E9CAC /* Airport.swift in Sources */,
+				72466BEF2778125900FEB20A /* AirportCellModel.swift in Sources */,
 				7258BAC2273A7D59005E9CAC /* RequestConvertible.swift in Sources */,
 				7258BAD6273C774E005E9CAC /* Strings.swift in Sources */,
 				7258BABE273A6B02005E9CAC /* WebServiceError.swift in Sources */,
 				7258BAC0273A6B30005E9CAC /* WebService.swift in Sources */,
-				7201E915273A3F080041B39B /* ViewController.swift in Sources */,
+				7201E915273A3F080041B39B /* ListViewController.swift in Sources */,
+				72466BE92777DD5400FEB20A /* UIViewController+Extensions.swift in Sources */,
 				7258BAC8273A9D15005E9CAC /* ListViewModel.swift in Sources */,
+				72466BED2778123300FEB20A /* AirportsTableViewCell.swift in Sources */,
 				7258BAB9273A699F005E9CAC /* AirportService.swift in Sources */,
 				7201E911273A3F080041B39B /* AppDelegate.swift in Sources */,
+				72466BEB2778121C00FEB20A /* CGFloat+Extensions.swift in Sources */,
 				7201E913273A3F080041B39B /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
