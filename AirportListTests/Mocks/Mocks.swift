@@ -9,6 +9,15 @@ import Foundation
 import Combine
 @testable import AirportList
 
+class MockCacheManager: FileBasedCacheManager {
+    override func url<T: Codable>(for type: T.Type) -> URL? {
+        let paths = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)
+        return paths.first?
+            .appendingPathComponent("Testing")
+            .appendingPathExtension("json")
+    }
+}
+
 struct MockAirportService: AirportServiceType {
     func fetchAirportList() -> AnyPublisher<[Airport], WebServiceError> {
         let airports: [Airport] = MockUtils.shared.loadData(fileName: "AirportsData")!
@@ -47,39 +56,98 @@ class MockUtils {
     }
 }
 
+extension AirportCellModel {
+    static func makeMock(
+        airport: Airport = Airport.makeMock()
+    ) -> AirportCellModel {
+        return AirportCellModel(airport: airport)
+    }
+}
 
 extension Airport {
-    static let mock = Airport(
-        airportCode: "AAA",
-        airportName: "Anaa",
-        domesticAirport: false,
-        regionalAirport: false,
-        onlineIndicator: false,
-        eticketableAirport: false,
-        location: Location.mock,
-        city: City.mock,
-        country: Country.mock,
-        region: Region.mock)
+    static func makeMock(
+        airportCode: String = "AAA",
+        airportName: String = "Anaa",
+        domesticAirport: Bool = false,
+        regionalAirport: Bool = false,
+        onlineIndicator: Bool = false,
+        eticketableAirport: Bool = false,
+        location: Location = Location.makeMock(),
+        city: City = City.makeMock(),
+        country: Country = Country.makeMock(),
+        region: Region = Region.makeMock()
+    ) -> Airport {
+        return Airport(
+            airportCode: airportCode,
+            airportName: airportName,
+            domesticAirport: domesticAirport,
+            regionalAirport: regionalAirport,
+            onlineIndicator: onlineIndicator,
+            eticketableAirport: eticketableAirport,
+            location: location,
+            city: city,
+            country: country,
+            region: region
+        )
+    }
 }
 
 extension Location {
-    static let mock = Location(aboveSeaLevel: -99999,
-                               latitude: 17.25,
-                               latitudeRadius: -0.304,
-                               longitude: 145.3,
-                               longitudeRadius: -2.5395,
-                               latitudeDirection: "S",
-                               longitudeDirection: "W")
+    static func makeMock(
+        aboveSeaLevel: Int = -99999,
+        latitude: Double = 17.25,
+        latitudeRadius: Double = -0.304,
+        longitude: Double = 145.3,
+        longitudeRadius: Double = -2.5395,
+        latitudeDirection: String = "S",
+        longitudeDirection: String = "W"
+    ) -> Location {
+        return Location(
+            aboveSeaLevel: aboveSeaLevel,
+            latitude: latitude,
+            latitudeRadius: latitudeRadius,
+            longitude: longitude,
+            longitudeRadius: longitudeRadius,
+            latitudeDirection: latitudeDirection,
+            longitudeDirection: longitudeDirection
+        )
+    }
 }
 
 extension City {
-    static let mock = City(cityCode: "AAA", cityName: "Anaa", timeZoneName: "Pacific/Tahiti")
+    static func makeMock(
+        cityCode: String = "AAA",
+        cityName: String = "Anaa",
+        timeZoneName: String = "Pacific/Tahiti"
+    ) -> City {
+        return City(
+            cityCode: cityCode,
+            cityName: cityName,
+            timeZoneName: timeZoneName
+        )
+    }
 }
 
 extension Country {
-    static let mock = Country(countryCode: "PF", countryName: "French Polynesia")
+    static func makeMock(
+        countryCode: String = "PF",
+        countryName: String = "French Polynesia"
+    ) -> Country {
+        return Country(
+            countryCode: countryCode,
+            countryName: countryName
+        )
+    }
 }
 
 extension Region {
-    static let mock = Region(regionCode: "SP", regionName: "South Pacific")
+    static func makeMock(
+        regionCode: String = "SP",
+        regionName: String = "South Pacific"
+    ) -> Region {
+        return Region(
+            regionCode: regionCode,
+            regionName: regionName
+        )
+    }
 }

@@ -27,7 +27,11 @@ class ListViewModelTests: XCTestCase {
     }
 
     func testIsLoadingSequence() throws {
-        viewModel = ListViewModel(service: MockAirportService())
+        let cacheManager = MockCacheManager()
+        cacheManager.removeCache(for: [Airport].self)
+
+        let repository = AirportRepository(cacheManager: cacheManager, service: MockAirportService())
+        viewModel = ListViewModel(repository: repository)
 
         let expectation = expectation(description: "loading flag sequence to be [true, false]")
 
@@ -45,7 +49,11 @@ class ListViewModelTests: XCTestCase {
     }
 
     func testFetchAirportSuccess() throws {
-        viewModel = ListViewModel(service: MockAirportService())
+        let cacheManager = MockCacheManager()
+        cacheManager.removeCache(for: [Airport].self)
+
+        let repository = AirportRepository(cacheManager: cacheManager, service: MockAirportService())
+        viewModel = ListViewModel(repository: repository)
 
         let expectation = expectation(description: "fetch airport")
 
@@ -55,7 +63,34 @@ class ListViewModelTests: XCTestCase {
                 XCTFail("infinite publisher shouldn't complete")
             } receiveValue: { _ in
                 XCTAssertEqual(self.viewModel.numberOfRows, 21)
-                XCTAssertEqual(self.viewModel.item(at: IndexPath(row: 0, section: 0)), Airport.mock)
+                XCTAssertEqual(self.viewModel.cellModel(at: IndexPath(row: 0, section: 0)), AirportCellModel.makeMock())
+                expectation.fulfill()
+            }
+
+        viewModel.fetchAirports()
+        wait(for: [expectation], timeout: 3)
+    }
+
+    func testFetchAirportSuccessWithCache() throws {
+        let cacheManager = MockCacheManager()
+        cacheManager.removeCache(for: [Airport].self)
+        let airports: [Airport] = MockUtils.shared.loadData(fileName: "AirportsData")!
+        cacheManager.cache(airports)
+
+        let repository = AirportRepository(cacheManager: cacheManager, service: MockAirportService())
+        viewModel = ListViewModel(repository: repository)
+
+        let expectation = expectation(description: "fetch airport")
+
+        cancellable = viewModel.reloadTablePublisher
+            .collect(2)
+            .sink { completion in
+                XCTFail("infinite publisher shouldn't complete")
+            } receiveValue: { reloadTableSignalSequence in
+                XCTAssertEqual(reloadTableSignalSequence.count, 2)
+
+                XCTAssertEqual(self.viewModel.numberOfRows, 21)
+                XCTAssertEqual(self.viewModel.cellModel(at: IndexPath(row: 0, section: 0)), AirportCellModel.makeMock())
                 expectation.fulfill()
             }
 
@@ -64,7 +99,11 @@ class ListViewModelTests: XCTestCase {
     }
 
     func testFetchAirportFailure() throws {
-        viewModel = ListViewModel(service: MockAirportServiceWithError())
+        let cacheManager = MockCacheManager()
+        cacheManager.removeCache(for: [Airport].self)
+
+        let repository = AirportRepository(cacheManager: cacheManager, service: MockAirportServiceWithError())
+        viewModel = ListViewModel(repository: repository)
 
         let expectation = expectation(description: "Receive an error")
 
@@ -82,4 +121,26 @@ class ListViewModelTests: XCTestCase {
         wait(for: [expectation], timeout: 3)
     }
 
+    func testFetchAirportFailureWithCache() throws {
+        let cacheManager = MockCacheManager()
+        cacheManager.removeCache(for: [Airport].self)
+
+        let repository = AirportRepository(cacheManager: cacheManager, service: MockAirportServiceWithError())
+        viewModel = ListViewModel(repository: repository)
+
+        let expectation = expectation(description: "Receive an error")
+
+        cancellable = viewModel.errorPublisher
+            .collect(1)
+            .sink(receiveCompletion: { completion in
+                XCTFail("infinite publisher shouldn't complete")
+            }, receiveValue: { errorSequence in
+                let errorKindSequence = errorSequence.map { $0.errorKind }
+                XCTAssertEqual(errorKindSequence, [WebServiceError.ErrorKind.badServerResponse])
+                expectation.fulfill()
+            })
+
+        viewModel.fetchAirports()
+        wait(for: [expectation], timeout: 3)
+    }
 }

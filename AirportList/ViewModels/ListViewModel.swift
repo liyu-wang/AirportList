@@ -35,13 +35,13 @@ class ListViewModel: ListViewModelType {
     private let isLoadingSubject = PassthroughSubject<Bool, Never>()
     private let errorSubject = PassthroughSubject<WebServiceError, Never>()
     private let reloadTableSubject = PassthroughSubject<Void, Never>()
-    private let service: AirportServiceType
+    private let repository: AirportRepositoryType
     private var airportCellModels: [AirportCellModel] = []
 
     private var cancellables = Set<AnyCancellable>()
 
-    init(service: AirportServiceType = AirportService()) {
-        self.service = service
+    init(repository: AirportRepositoryType = AirportRepository()) {
+        self.repository = repository
     }
 
     var numberOfRows: Int {
@@ -55,18 +55,20 @@ class ListViewModel: ListViewModelType {
     func fetchAirports() {
         isLoadingSubject.send(true)
 
-        service.fetchAirportList()
+        repository.getAirportList()
             .sink { [weak self] completion in
                 guard let self = self else { return }
                 switch completion {
                 case .finished:
-                    self.reloadTableSubject.send()
+                    break
                 case let .failure(error):
                     self.errorSubject.send(error)
                 }
                 self.isLoadingSubject.send(false)
             } receiveValue: { [weak self] airports in
-                self?.airportCellModels = airports.map { AirportCellModel(airport: $0) }
+                guard let self = self else { return }
+                self.airportCellModels = airports.map { AirportCellModel(airport: $0) }
+                self.reloadTableSubject.send()
             }
             .store(in: &cancellables)
     }

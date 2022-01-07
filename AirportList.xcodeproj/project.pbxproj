@@ -12,6 +12,8 @@
 		7201E915273A3F080041B39B /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7201E914273A3F080041B39B /* ListViewController.swift */; };
 		7201E91A273A3F0A0041B39B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7201E919273A3F0A0041B39B /* Assets.xcassets */; };
 		7201E91D273A3F0A0041B39B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7201E91B273A3F0A0041B39B /* LaunchScreen.storyboard */; };
+		7202AD762782729700F32AF1 /* AirportRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7202AD752782729700F32AF1 /* AirportRepository.swift */; };
+		7202AD792782758000F32AF1 /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7202AD782782758000F32AF1 /* CacheManager.swift */; };
 		72466BE92777DD5400FEB20A /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72466BE82777DD5400FEB20A /* UIViewController+Extensions.swift */; };
 		72466BEB2778121C00FEB20A /* CGFloat+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72466BEA2778121C00FEB20A /* CGFloat+Extensions.swift */; };
 		72466BED2778123300FEB20A /* AirportsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72466BEC2778123300FEB20A /* AirportsTableViewCell.swift */; };
@@ -48,6 +50,8 @@
 		7201E91C273A3F0A0041B39B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7201E91E273A3F0A0041B39B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7201E928273A3F540041B39B /* AirportListTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AirportListTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7202AD752782729700F32AF1 /* AirportRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirportRepository.swift; sourceTree = "<group>"; };
+		7202AD782782758000F32AF1 /* CacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheManager.swift; sourceTree = "<group>"; };
 		72466BE82777DD5400FEB20A /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 		72466BEA2778121C00FEB20A /* CGFloat+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGFloat+Extensions.swift"; sourceTree = "<group>"; };
 		72466BEC2778123300FEB20A /* AirportsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AirportsTableViewCell.swift; sourceTree = "<group>"; };
@@ -109,6 +113,8 @@
 				72466BE72777DD2B00FEB20A /* Extensions */,
 				7258BAB6273A6886005E9CAC /* Views */,
 				7258BAC6273A9CF2005E9CAC /* ViewModels */,
+				7202AD742782724000F32AF1 /* Repositories */,
+				7202AD772782756800F32AF1 /* Managers */,
 				7258BAB7273A68B5005E9CAC /* Services */,
 				7258BABA273A6A18005E9CAC /* Models */,
 				7258BAD4273C773D005E9CAC /* Resources */,
@@ -127,6 +133,22 @@
 				7258BAC9273AA1C1005E9CAC /* ListViewModelTests.swift */,
 			);
 			path = AirportListTests;
+			sourceTree = "<group>";
+		};
+		7202AD742782724000F32AF1 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				7202AD752782729700F32AF1 /* AirportRepository.swift */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		7202AD772782756800F32AF1 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				7202AD782782758000F32AF1 /* CacheManager.swift */,
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 		72466BE72777DD2B00FEB20A /* Extensions */ = {
@@ -306,12 +328,14 @@
 				7258BAC2273A7D59005E9CAC /* RequestConvertible.swift in Sources */,
 				7258BAD6273C774E005E9CAC /* Strings.swift in Sources */,
 				7258BABE273A6B02005E9CAC /* WebServiceError.swift in Sources */,
+				7202AD762782729700F32AF1 /* AirportRepository.swift in Sources */,
 				7258BAC0273A6B30005E9CAC /* WebService.swift in Sources */,
 				7201E915273A3F080041B39B /* ListViewController.swift in Sources */,
 				72466BE92777DD5400FEB20A /* UIViewController+Extensions.swift in Sources */,
 				7258BAC8273A9D15005E9CAC /* ListViewModel.swift in Sources */,
 				72466BED2778123300FEB20A /* AirportsTableViewCell.swift in Sources */,
 				7258BAB9273A699F005E9CAC /* AirportService.swift in Sources */,
+				7202AD792782758000F32AF1 /* CacheManager.swift in Sources */,
 				7201E911273A3F080041B39B /* AppDelegate.swift in Sources */,
 				72466BEB2778121C00FEB20A /* CGFloat+Extensions.swift in Sources */,
 				7201E913273A3F080041B39B /* SceneDelegate.swift in Sources */,

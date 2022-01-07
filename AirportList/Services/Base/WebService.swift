@@ -11,7 +11,8 @@ import Combine
 extension URLSession {
     static let sharedSession: URLSession = {
         let config = URLSessionConfiguration.default
-        config.waitsForConnectivity = true
+//        config.waitsForConnectivity = true
+        config.timeoutIntervalForRequest = 10.0
         let session = URLSession(configuration: config)
         return session
     }()
