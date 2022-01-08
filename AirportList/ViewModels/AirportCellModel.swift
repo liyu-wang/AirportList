@@ -17,7 +17,7 @@ struct AirportCellModel {
         airport.country.countryName
     }
 
-    private let airport: Airport
+    let airport: Airport
 
     init(airport: Airport) {
         self.airport = airport

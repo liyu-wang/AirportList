@@ -56,7 +56,16 @@ class ListViewController: UIViewController {
         viewModel.fetchAirports()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        guard let selectedIndexPath = tableView.indexPathForSelectedRow else { return }
+        tableView.deselectRow(at: selectedIndexPath, animated: animated)
+    }
+
     private func setupViews() {
+        navigationItem.title = Strings.Navigation.listVCTitle
+
         view.backgroundColor = .systemBackground
         view.addSubview(tableView)
         view.addSubview(loadingSpinner)
@@ -119,6 +128,8 @@ extension ListViewController: UITableViewDataSource {
 
 extension ListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        let airportCellModel = viewModel.cellModel(at: indexPath)
+        let detailVC = DetailsViewController(detailsViewModel: DetailsViewModel(airport: airportCellModel.airport))
+        navigationController?.pushViewController(detailVC, animated: true)
     }
 }

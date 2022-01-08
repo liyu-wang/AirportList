@@ -29,6 +29,9 @@
 		7258BACD273AA1F1005E9CAC /* AirportsData.json in Resources */ = {isa = PBXBuildFile; fileRef = 7258BACC273AA1F1005E9CAC /* AirportsData.json */; };
 		7258BACF273AA361005E9CAC /* Mocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7258BACE273AA361005E9CAC /* Mocks.swift */; };
 		7258BAD6273C774E005E9CAC /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7258BAD5273C774E005E9CAC /* Strings.swift */; };
+		72C5D47927890E7D00C5CA61 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72C5D47827890E7D00C5CA61 /* DetailsViewController.swift */; };
+		72C5D47B27890E8500C5CA61 /* DetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72C5D47A27890E8500C5CA61 /* DetailsView.swift */; };
+		72C5D47D27890EA500C5CA61 /* DetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72C5D47C27890EA500C5CA61 /* DetailsViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +70,9 @@
 		7258BACC273AA1F1005E9CAC /* AirportsData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = AirportsData.json; sourceTree = "<group>"; };
 		7258BACE273AA361005E9CAC /* Mocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mocks.swift; sourceTree = "<group>"; };
 		7258BAD5273C774E005E9CAC /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
+		72C5D47827890E7D00C5CA61 /* DetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
+		72C5D47A27890E8500C5CA61 /* DetailsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsView.swift; sourceTree = "<group>"; };
+		72C5D47C27890EA500C5CA61 /* DetailsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,6 +171,8 @@
 			children = (
 				7201E914273A3F080041B39B /* ListViewController.swift */,
 				72466BEC2778123300FEB20A /* AirportsTableViewCell.swift */,
+				72C5D47827890E7D00C5CA61 /* DetailsViewController.swift */,
+				72C5D47A27890E8500C5CA61 /* DetailsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -201,6 +209,7 @@
 			children = (
 				7258BAC7273A9D15005E9CAC /* ListViewModel.swift */,
 				72466BEE2778125900FEB20A /* AirportCellModel.swift */,
+				72C5D47C27890EA500C5CA61 /* DetailsViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -324,6 +333,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7258BABC273A6A31005E9CAC /* Airport.swift in Sources */,
+				72C5D47D27890EA500C5CA61 /* DetailsViewModel.swift in Sources */,
 				72466BEF2778125900FEB20A /* AirportCellModel.swift in Sources */,
 				7258BAC2273A7D59005E9CAC /* RequestConvertible.swift in Sources */,
 				7258BAD6273C774E005E9CAC /* Strings.swift in Sources */,
@@ -332,7 +342,9 @@
 				7258BAC0273A6B30005E9CAC /* WebService.swift in Sources */,
 				7201E915273A3F080041B39B /* ListViewController.swift in Sources */,
 				72466BE92777DD5400FEB20A /* UIViewController+Extensions.swift in Sources */,
+				72C5D47927890E7D00C5CA61 /* DetailsViewController.swift in Sources */,
 				7258BAC8273A9D15005E9CAC /* ListViewModel.swift in Sources */,
+				72C5D47B27890E8500C5CA61 /* DetailsView.swift in Sources */,
 				72466BED2778123300FEB20A /* AirportsTableViewCell.swift in Sources */,
 				7258BAB9273A699F005E9CAC /* AirportService.swift in Sources */,
 				7202AD792782758000F32AF1 /* CacheManager.swift in Sources */,
