@@ -10,7 +10,7 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-
+    var coordinator: CoordinatorType?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
@@ -19,8 +19,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
 
         let window = UIWindow(windowScene: windowScene)
-        let navController = UINavigationController(rootViewController: ListViewController())
-        window.rootViewController = navController
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            let splitViewController = UISplitViewController(style: .doubleColumn)
+            coordinator = MainSplitCoordinator(splitViewController: splitViewController)
+            coordinator?.start()
+            window.rootViewController = splitViewController
+        } else {
+            let navigationController = UINavigationController()
+            coordinator = MainNavigaitonCoordinator(navigationController: navigationController)
+            coordinator?.start()
+            window.rootViewController = navigationController
+        }
+
         window.makeKeyAndVisible()
         self.window = window
     }

@@ -35,10 +35,12 @@ class ListViewController: UIViewController {
         return activityIndicator
     }()
 
+    private var airportNavigatable: AirportNavigatable
     private let viewModel: ListViewModelType
     private var cancellables = Set<AnyCancellable>()
 
-    init(viewModel: ListViewModelType = ListViewModel()) {
+    init(airportNavigatable: AirportNavigatable, viewModel: ListViewModelType = ListViewModel()) {
+        self.airportNavigatable = airportNavigatable
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -129,7 +131,6 @@ extension ListViewController: UITableViewDataSource {
 extension ListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let airportCellModel = viewModel.cellModel(at: indexPath)
-        let detailVC = DetailsViewController(detailsViewModel: DetailsViewModel(airport: airportCellModel.airport))
-        navigationController?.pushViewController(detailVC, animated: true)
+        airportNavigatable.showAirportDetails(airportCellModel.airport)
     }
 }
